@@ -1,0 +1,20 @@
+# Download and install Bitwarden CLI
+wget https://github.com/bitwarden/cli/releases/download/v1.12.0/bw-linux-x64-v1.12.0.tar.gz
+tar -xvzf bw-linux-x64-v1.12.0.tar.gz
+chown root: bw
+chmod 755 bw
+mv bw /usr/bin
+
+# Set environment variables for client ID and secret
+export BW_CLIENTID="your_client_id"
+export BW_CLIENTSECRET="your_client_secret"
+
+# Set password variable
+BW_PASSWORD="your_password"
+
+# Login and unlock
+bw login --apikey
+bw unlock $BW_PASSWORD
+
+# Export to encrypted JSON format
+bw export --output /path/to/save/folder --format encrypted_json --password $BW_PASSWORD
